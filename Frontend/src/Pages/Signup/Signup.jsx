@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -20,17 +20,16 @@ const Signup = () => {
   };
 
   // Handle form submit
-  const handleSubmit =  async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-   try {
-     await axios.post("http://localhost:3000/sigin",formData);
-     console.log("send data to backend");
-     
-   } catch (error) {
-      console.log("failed to send singup data in backend",error);
-      
-   }
-    alert("Signup data logged successfully!");
+    try {
+      const res = await axios.post("http://localhost:3000/signin",formData);
+      alert(res.data.message)
+
+    } catch (error) {
+      console.log("failed to send sinin data in to backend", error);
+
+    }
   };
 
   return (
